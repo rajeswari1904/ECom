@@ -1,97 +1,81 @@
-# CLI Calculator
+# ABC LED
 
-A small command-line calculator written in JavaScript for Node.js.
+ABC LED is a full-stack commerce platform for LED lighting products, built with Angular on the frontend and Node.js + Express on the backend.
 
-## Project purpose
+## Monorepo structure
 
-This project accepts arithmetic commands from the terminal and prints the result. It supports basic operations for:
+- frontend/ — Angular 21 storefront and dashboard UI
+- backend/ — Express API for auth, products, and orders
+- database/ — MySQL schema and seed scripts
+- docs/ — setup and deployment notes
 
-- multiply
-- subtract
-- add
+## Completed milestones
 
-## Files
+- Monorepo setup and workspace configuration
+- Angular storefront with landing, product, cart, and checkout flows
+- Product catalog API with mock fallback and database-ready structure
+- JWT-based auth with register/login/me routes
+- Checkout order flow with subtotal, shipping, discount, and totals
+- Seller, admin, and customer dashboard screens
+- Swagger/OpenAPI docs and generated-style frontend API client
+- System design diagram and verification test plan
+- Build validation for frontend and backend
 
-- `cal.ts` — main calculator logic
+## Final deliverables
 
-## How to run
+- Swagger docs: docs/swagger.md and live UI at http://localhost:5000/docs
+- System design: docs/system-design.md
+- Test plan: docs/test-plan.md
+- Generated frontend API service: frontend/src/app/core/services/swagger-api.service.ts
 
-From the project folder, run:
+## Quick start
 
-```bash
-node cal.ts multiply 12 3
-```
+Install dependencies:
 
-Example commands:
+npm install
 
-```bash
-node cal.ts multiply 12 3
-node cal.ts subtract 100 25 10
-node cal.ts add 20 5 2
-```
+Start the backend:
 
-## Supported operations
+npm --prefix backend run dev
 
-### multiply
+Start the frontend:
 
-```bash
-node cal.ts multiply 12 3
-```
+npm --prefix frontend run start
 
-Result:
+Build all projects:
 
-```bash
-Result: 36
-```
+npm --prefix backend run build
+npm --prefix frontend run build
 
-### subtract
+Run backend tests:
 
-```bash
-node cal.ts subtract 100 25 10
-```
+npm --prefix backend test -- --runInBand
 
-This calculates:
+## Local URLs
 
-```text
-100 - (25 + 10) = 65
-```
+- Frontend: http://localhost:4200
+- Backend: http://localhost:5000
+- Health check: http://localhost:5000/health
+- Products API: http://localhost:5000/api/products
+- Auth API: http://localhost:5000/api/auth/login and /register
+- Checkout API: http://localhost:5000/api/orders/checkout
 
-### add
+## Environment configuration
 
-```bash
-node cal.ts add 20 5 2
-```
+The backend includes a template at backend/.env.example. Copy it to backend/.env and update the values before running in a real environment.
 
-This calculates:
+## Setup on another system
 
-```text
-(20 + 5) + 2 = 27
-```
+For a clean install on a different machine without copying `node_modules`, see [docs/setup-guide.md](docs/setup-guide.md).
 
-## Help command
+## Project update
 
-```bash
-node cal.ts --help
-```
+For a summary of the completed work, current features, and recent shopping-app improvements, see [docs/project-update.md](docs/project-update.md).
 
-or
+## Deployment and hardening
 
-```bash
-node cal.ts -h
-```
-
-This prints the usage instructions and examples.
-
-## Input validation
-
-The program validates:
-
-- missing numbers
-- invalid numeric values
-- unsupported operations
-
-If something is invalid, it prints an error message and exits with code 1.
+See docs/deployment.md for the production checklist, environment variables, and deployment plan.
 
 ## Notes
 
-This is a lightweight single-file command-line tool intended for learning and basic terminal-based calculations.
+The project is intentionally organized in milestone-based phases and is currently in a working, build-verified state for local development and deployment preparation.
